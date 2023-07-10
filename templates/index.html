@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home</title>
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <form id="keyword-form">
+        <input name="url" placeholder="Enter keyword">
+        <button id="keyword-button" type="submit">
+            Summarize
+        </button>
+    </form>
+
+    <div id="result-placeholder"></div>
+
+    <script>
+        $(document).ready(function () {
+            $("#keyword-button").click(function () {
+                $("#keyword-form").submit(function (e) {
+                    e.preventDefault();
+                    // var data = $(this).serialize();
+                    var formData = $(this).serializeArray();
+                    var jsonData = {};
+
+                    $(formData).each(function (index, obj) {
+                        jsonData[obj.name] = obj.value;
+                    });
+
+                    var data = JSON.stringify(jsonData);
+                    console.log(data)
+                    $.ajax({
+                        url: "api/summarize",
+                        type: "POST",
+                        data: data,
+                        contentType: "application/json",
+                        success: function (response) {
+                            console.log(response)
+                            $("#result-placeholder").text(response);
+                        },
+                    });
+                });
+            });
+        });
+
+    </script>
+</body>
+
+</html>

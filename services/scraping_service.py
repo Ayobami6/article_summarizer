@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
+# Scraping class
 class ScrapingService:
     """ Scraping Service class
     """

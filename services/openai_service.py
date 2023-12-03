@@ -29,8 +29,6 @@ class OpenAIService:
             frequency_penalty=0.73,
             presence_penalty=0
         )
-        # Call the OpenAI API to summarize and explain the content
-        # Replace the following line with the actual API call to OpenAI
         summarized_content = chat_response['choices'][0]['text'].replace(
             "?", "")
 
